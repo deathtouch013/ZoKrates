@@ -6,7 +6,7 @@ repository = "https://github.com/JacobEberhardt/ZoKrates.git"
 edition = "2018"
 
 [dependencies]
-zokrates_common = { path = "../zokrates_common" }
+zokrates_common = { version = "0.1.3",registry = "kellnr" }
 
 [dev-dependencies]
 tempfile = "3"
