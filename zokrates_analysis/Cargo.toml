@@ -17,11 +17,11 @@ lazy_static = "1.4"
 # serialization and deserialization
 serde = { version = "1.0", features = ["derive"] }
 serde_json = { version = "1.0", features = ["preserve_order"] }
-zokrates_field = { version = "0.5.0", path = "../zokrates_field", default-features = false }
-zokrates_pest_ast = { version = "0.3.0", path = "../zokrates_pest_ast" }
-zokrates_common = { version = "0.1", path = "../zokrates_common", default-features = false }
-zokrates_embed = { version = "0.1.0", path = "../zokrates_embed", default-features = false }
-zokrates_ast = { version = "0.1", path = "../zokrates_ast", default-features = false }
+zokrates_field = { version = "0.5.0", registry = "kellnr", default-features = false }
+zokrates_pest_ast = { version = "0.3.0", registry = "kellnr" }
+zokrates_common = { version = "0.1", registry = "kellnr", default-features = false }
+zokrates_embed = { version = "0.1.0", registry = "kellnr", default-features = false }
+zokrates_ast = { version = "0.1", registry = "kellnr", default-features = false }
 
 [dev-dependencies]
 pretty_assertions = "0.6.1"

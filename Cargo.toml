@@ -22,6 +22,9 @@ members = [
     "zokrates_js",
     "zokrates_circom",
     "zokrates_profiler",
+    "zokrates_parser",
+    "zokrates_pest_ast",
+    "zokrates_lib",
 ]
 
 [profile.dev]

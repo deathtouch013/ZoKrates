@@ -1,0 +1,36 @@
+[package]
+name = "zokrates_lib"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = ["bellman", "ark", "bellperson"]
+bellman = ["zokrates_bellman", "zokrates_core/bellman", "zokrates_common/bellman"]
+ark = ["zokrates_ark", "zokrates_core/ark", "zokrates_common/ark"]
+bellperson = ["zokrates_bellperson", "zokrates_core/bellperson", "zokrates_common/bellperson"]
+
+[dependencies]
+#Compile
+log = "0.4.22"
+zokrates_core = { version = "0.7", registry = "kellnr", default-features = false }
+zokrates_fs_resolver = { version = "0.5", registry = "kellnr"}
+typed-arena = "1.4.1"
+zokrates_field = { version = "0.5", registry = "kellnr", features = ["multicore"] }
+zokrates_circom = { version = "0.1", registry = "kellnr", default-features = false }
+serde_json = { version = "1.0", features = ["preserve_order"] }
+
+#Setup
+rand_0_8 = { version = "0.8", package = "rand" }
+zokrates_ast = { version = "0.1", registry = "kellnr", default-features = false }
+zokrates_common = { version = "0.1", registry = "kellnr", default-features = false }
+
+# Backends del setup
+zokrates_proof_systems = { version = "0.1", registry = "kellnr", default-features = false }
+zokrates_ark = { version = "0.1", registry = "kellnr", features = ["multicore"], optional = true }
+zokrates_bellman = { version = "0.1", registry = "kellnr", features = ["multicore"], optional = true }
+zokrates_bellperson = { version = "0.1", registry = "kellnr", default-features = false, optional = true }
+
+# Compute withness
+zokrates_abi = { version = "0.1", registry = "kellnr" }
+zokrates_interpreter = { version = "0.1", registry = "kellnr", default-features = false }
+clap = "2.26.2"
