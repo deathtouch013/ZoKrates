@@ -12,6 +12,8 @@ use zokrates_field::Field;
 
 pub fn compute_witness(
     input_file: &str,
+    witness_file: &str,
+    out_wtns_file: &str,
     argumentos: Vec<&str>
 ) -> Result<(), String> {
     // read compiled program
@@ -22,17 +24,19 @@ pub fn compute_witness(
     let mut reader = BufReader::new(file);
 
     match ProgEnum::deserialize(&mut reader)? {
-        ProgEnum::Bn128Program(p) => compute_witness_aux(p, argumentos),
-        ProgEnum::Bls12_377Program(p) => compute_witness_aux(p, argumentos),
-        ProgEnum::Bls12_381Program(p) => compute_witness_aux(p, argumentos),
-        ProgEnum::Bw6_761Program(p) => compute_witness_aux(p, argumentos),
-        ProgEnum::PallasProgram(p) => compute_witness_aux(p, argumentos),
-        ProgEnum::VestaProgram(p) => compute_witness_aux(p, argumentos),
+        ProgEnum::Bn128Program(p) => compute_witness_aux(p, witness_file, out_wtns_file, argumentos),
+        ProgEnum::Bls12_377Program(p) => compute_witness_aux(p, witness_file, out_wtns_file, argumentos),
+        ProgEnum::Bls12_381Program(p) => compute_witness_aux(p, witness_file, out_wtns_file, argumentos),
+        ProgEnum::Bw6_761Program(p) => compute_witness_aux(p, witness_file, out_wtns_file, argumentos),
+        ProgEnum::PallasProgram(p) => compute_witness_aux(p, witness_file, out_wtns_file, argumentos),
+        ProgEnum::VestaProgram(p) => compute_witness_aux(p, witness_file, out_wtns_file, argumentos),
     }
 }
 
 fn compute_witness_aux<'a, T: Field, I: Iterator<Item = ir::Statement<'a, T>>>(
     ir_prog: ir::ProgIterator<'a, T, I>,
+    witness_file: &str,
+    out_wtns_file: &str,
     argumentos: Vec<&str>
 ) -> Result<(), String> {
 
@@ -96,7 +100,7 @@ fn compute_witness_aux<'a, T: Field, I: Iterator<Item = ir::Statement<'a, T>>>(
     }
 
     // write witness to file
-    let output_path = Path::new("witness");
+    let output_path = Path::new(witness_file);
     let output_file = File::create(output_path)
         .map_err(|why| format!("Could not create {}: {}", output_path.display(), why))?;
 
@@ -107,7 +111,7 @@ fn compute_witness_aux<'a, T: Field, I: Iterator<Item = ir::Statement<'a, T>>>(
         .map_err(|why| format!("Could not save witness: {:?}", why))?;
 
     // write circom witness to file
-    let wtns_path = Path::new("out.wtns");
+    let wtns_path = Path::new(out_wtns_file);
     let wtns_file = File::create(wtns_path)
         .map_err(|why| format!("Could not create {}: {}", output_path.display(), why))?;
 
