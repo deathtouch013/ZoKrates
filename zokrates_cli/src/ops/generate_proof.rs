@@ -197,6 +197,6 @@ fn cli_generate_proof<
         println!("Proof:\n{}", proof);
     }
 
-    println!("Proof written to '{}'", proof_path.display());
+    //println!("Proof written to '{}'", proof_path.display());
     Ok(())
 }

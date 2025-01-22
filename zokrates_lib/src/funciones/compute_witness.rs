@@ -40,9 +40,9 @@ fn compute_witness_aux<'a, T: Field, I: Iterator<Item = ir::Statement<'a, T>>>(
     argumentos: Vec<&str>
 ) -> Result<(), String> {
 
-    let verbose = true;
+    let verbose = false;
 
-    println!("Computing witness...");
+    //println!("Computing witness...");
 
     let signature = ConcreteSignature::new()
         .inputs(vec![ConcreteType::FieldElement; ir_prog.arguments.len()])
@@ -120,6 +120,6 @@ fn compute_witness_aux<'a, T: Field, I: Iterator<Item = ir::Statement<'a, T>>>(
     write_witness(&mut writer, witness, public_inputs)
         .map_err(|why| format!("Could not save circom witness: {:?}", why))?;
 
-    println!("Witness file written to '{}'", output_path.display());
+    //println!("Witness file written to '{}'", output_path.display());
     Ok(())
 }

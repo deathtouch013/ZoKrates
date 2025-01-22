@@ -229,6 +229,6 @@ fn cli_compute<'a, T: Field, I: Iterator<Item = ir::Statement<'a, T>>>(
     write_witness(&mut writer, witness, public_inputs)
         .map_err(|why| format!("Could not save circom witness: {:?}", why))?;
 
-    println!("Witness file written to '{}'", output_path.display());
+    //println!("Witness file written to '{}'", output_path.display());
     Ok(())
 }

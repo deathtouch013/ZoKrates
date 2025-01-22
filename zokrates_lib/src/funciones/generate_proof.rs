@@ -93,9 +93,9 @@ fn generate_proof_aux<
     prooving_key_path: &str,
     prooving_json_path: &str
 ) -> Result<(), String> {
-    let verbose = true;
+    let verbose = false;
 
-    println!("Generating proof...");
+    //println!("Generating proof...");
 
     // deserialize witness
     let witness_path = Path::new(witness_file);
@@ -130,6 +130,6 @@ fn generate_proof_aux<
         println!("Proof:\n{}", proof);
     }
 
-    println!("Proof written to '{}'", proof_path.display());
+    //println!("Proof written to '{}'", proof_path.display());
     Ok(())
 }
